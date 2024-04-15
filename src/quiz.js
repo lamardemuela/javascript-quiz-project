@@ -11,11 +11,8 @@ class Quiz {
   }
 
   // 2. method getQuestion()
-
   getQuestion() {
-    let currentQuestion = this.questions[this.currentQuestionIndex];
-
-    return currentQuestion;
+    return this.questions[this.currentQuestionIndex];
   }
 
   // 3. moveToNextQuestion()
@@ -33,12 +30,10 @@ class Quiz {
   // 5. checkAnswer(answer)
 
   checkAnswer(answer) {
-
-
-    if (answer === currentQuestion.answer) {
+    if (answer === this.questions[this.currentQuestionIndex].answer) {
       this.correctAnswers++;
     }
-  }  
+  }
 
   // 6. hasEnded()
 
