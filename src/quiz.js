@@ -11,7 +11,6 @@ class Quiz {
   }
 
   // 2. method getQuestion()
-
   getQuestion() {
     return this.questions[this.currentQuestionIndex];
   }
