@@ -1,6 +1,5 @@
 class Quiz {
-  // YOUR CODE HERE:
-  //
+  //DAY 1
   // 1. constructor (questions, timeLimit, timeRemaining)
   constructor(questions, timeLimit, timeRemaining) {
     this.questions = questions;
@@ -39,5 +38,29 @@ class Quiz {
     } else if (this.currentQuestionIndex === this.questions.length) {
       return true;
     }
+  }
+
+  //DAY 2
+  // 1. filterQuestionsByDifficulty()
+  filterQuestionsByDifficulty(difficulty) {
+    if (typeof difficulty !== "number" || difficulty < 1 || difficulty > 3){
+      return;
+    }
+    let filteredQuestions = this.questions.filter((eachQuestion) => {
+      if (eachQuestion.difficulty === difficulty) {
+        return true
+      }else{
+        return false
+      }
+    })
+    this.questions = filteredQuestions 
+  }
+
+  //2. averageDifficulty()
+  averageDifficulty() {
+    let sumDifficulty = this.questions.reduce( (acc, eachQuestion) => {
+      return acc + eachQuestion.difficulty
+    }, 0 )
+  return sumDifficulty / this.questions.length
   }
 }
