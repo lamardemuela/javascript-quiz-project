@@ -16,19 +16,16 @@ class Quiz {
   }
 
   // 3. moveToNextQuestion()
-
   moveToNextQuestion() {
     this.currentQuestionIndex++;
   }
 
   // 4. shuffleQuestions()
-
   shuffleQuestions() {
     this.questions.sort(() => Math.random() - this.questions.length);
   }
 
   // 5. checkAnswer(answer)
-
   checkAnswer(answer) {
     if (answer === this.questions[this.currentQuestionIndex].answer) {
       this.correctAnswers++;
@@ -36,7 +33,6 @@ class Quiz {
   }
 
   // 6. hasEnded()
-
   hasEnded() {
     if (this.currentQuestionIndex < this.questions.length) {
       return false;
