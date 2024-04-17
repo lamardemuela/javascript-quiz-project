@@ -136,22 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Loop through the current question `choices`.
 
     // For each choice create a new radio input with a label, and append it to the choice container.
-
-    question.choices.forEach((eachChoice) => {
-      const radioChoices = (choiceContainer.innerHTML = `${eachChoice}` );
-      console.log(eachChoice)
-      choiceContainer.append(radioChoices);
-    });
-
-    console.log(question.choices);
-    // console.log (radioChoices)`
-
-    /*`
-    <input type="radio" name="choice" value="${eachChoice}">
-    <label>${eachChoice}</label> 
-    <br>
-    `</br>*/
-
     // Each choice should be displayed as a radio input element with a label:
     /* 
           <input type="radio" name="choice" value="CHOICE TEXT HERE">
@@ -163,25 +147,45 @@ document.addEventListener("DOMContentLoaded", () => {
     // Hint 2: You can use the `element.type`, `element.name`, and `element.value` properties to set the type, name, and value of an element.
     // Hint 3: You can use the `element.appendChild()` method to append an element to the choices container.
     // Hint 4: You can use the `element.innerText` property to set the inner text of an element.
-  }
 
+    question.choices.forEach((eachChoice) => {
+      const liNode = document.createElement("li");
+      liNode.innerHTML = `
+        <input type="radio" name="choice" value="${eachChoice}">
+        <label>${eachChoice}</label> 
+        <br>
+        </br>
+        `;
+      liNode.classList.add("aChoice")
+      choiceContainer.append(liNode);
+    });
+  }
+  console.log(choiceContainer)
   function nextButtonHandler() {
-    let selectedAnswer; // A variable to store the selected answer value
+    let selectedAnswer = ; // A variable to store the selected answer value
 
     // YOUR CODE HERE:
     //
     // 1. Get all the choice elements. You can use the `document.querySelectorAll()` method.
-
+    const allChoices = document.querySelectorAll(".aChoice")
+    
     // 2. Loop through all the choice elements and check which one is selected
     // Hint: Radio input elements have a property `.checked` (e.g., `element.checked`).
     //  When a radio input gets selected the `.checked` property will be set to true.
     //  You can use check which choice was selected by checking if the `.checked` property is true.
-
+    allChoices.forEach((eachChoice) => {
+      const inputNode = document.querySelector("input")
+      let selectInput = inputNode.checked
+      if(selectInput === true){
+        selectedAnswer = selectInput
+      }
+    })
     // 3. If an answer is selected (`selectedAnswer`), check if it is correct and move to the next question
     // Check if selected answer is correct by calling the quiz method `checkAnswer()` with the selected answer.
     // Move to the next question by calling the quiz method `moveToNextQuestion()`.
     // Show the next question by calling the function `showQuestion()`.
   }
+  
 
   function showResults() {
     // YOUR CODE HERE:
