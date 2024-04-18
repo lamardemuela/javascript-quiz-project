@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ),
     // Add more questions here
   ];
-  const quizDuration = 60; // 120 seconds (2 minutes)
+  const quizDuration = 120; // 120 seconds (2 minutes)
 
   /************  QUIZ INSTANCE  ************/
 
@@ -156,36 +156,32 @@ document.addEventListener("DOMContentLoaded", () => {
         <br>
         </br>
         `;
-      liNode.classList.add("aChoice")
+      liNode.classList.add("aChoice");
       choiceContainer.append(liNode);
     });
-    
   }
- 
-  
-    // 1. Get all the choice elements. You can use the `document.querySelectorAll()` method.
-    // 2. Loop through all the choice elements and check which one is selected
-    // Hint: Radio input elements have a property `.checked` (e.g., `element.checked`).
-    //  When a radio input gets selected the `.checked` property will be set to true.
-    //  You can use check which choice was selected by checking if the `.checked` property is true.
-    // 3. If an answer is selected (`selectedAnswer`), check if it is correct and move to the next question
-    // Check if selected answer is correct by calling the quiz method `checkAnswer()` with the selected answer
-    // Move to the next question by calling the quiz method `moveToNextQuestion()`.
-    // Show the next question by calling the function `showQuestion()`.
-    function nextButtonHandler() {
-    let selectedAnswer // A variable to store the selected answer value
-    const allInputNodeList = document.querySelectorAll(".aChoice input")
+
+  // 1. Get all the choice elements. You can use the `document.querySelectorAll()` method.
+  // 2. Loop through all the choice elements and check which one is selected
+  // Hint: Radio input elements have a property `.checked` (e.g., `element.checked`).
+  //  When a radio input gets selected the `.checked` property will be set to true.
+  //  You can use check which choice was selected by checking if the `.checked` property is true.
+  // 3. If an answer is selected (`selectedAnswer`), check if it is correct and move to the next question
+  // Check if selected answer is correct by calling the quiz method `checkAnswer()` with the selected answer
+  // Move to the next question by calling the quiz method `moveToNextQuestion()`.
+  // Show the next question by calling the function `showQuestion()`.
+  function nextButtonHandler() {
+    let selectedAnswer; // A variable to store the selected answer value
+    const allInputNodeList = document.querySelectorAll(".aChoice input");
     allInputNodeList.forEach((eachInput) => {
-      if (eachInput.checked === true){
-        selectedAnswer = eachInput.value 
+      if (eachInput.checked === true) {
+        selectedAnswer = eachInput.value;
       }
-    })
-    quiz.checkAnswer(selectedAnswer)
-    quiz.moveToNextQuestion()
-    showQuestion()
-    
+    });
+    quiz.checkAnswer(selectedAnswer);
+    quiz.moveToNextQuestion();
+    showQuestion();
   }
-  
 
   function showResults() {
     // 1. Hide the quiz view (div#quizView)
@@ -196,52 +192,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Update the result container (div#result) inner text to show the number of correct answers out of total questions
     resultContainer.innerText = `You scored ${quiz.correctAnswers} out of ${quiz.questions.length} correct answers!`; // This value is hardcoded as a placeholder
-    
   }
 
-  const restartBtnNode = document.querySelector("#restartButton")
+  const restartBtnNode = document.querySelector("#restartButton");
   restartBtnNode.addEventListener("click", () => {
     endView.style.display = "none";
     quizView.style.display = "flex";
     quiz = new Quiz(questions, quizDuration, quizDuration);
-    quiz.shuffleQuestions()
-    showQuestion()
-    appearTimer()
-    
-  })
+    quiz.shuffleQuestions();
+    showQuestion();
+    appearTimer();
+  });
 
   //DAY 4
   // 1. TIMER
   //colocamos nuestro timer en la esquina superior derecha
-  // const containerNode = document.querySelector("#container")
   function appearTimer() {
-    timeRemainingContainer.style.top = "75px"
-    timeRemainingContainer.style.right = "50px"
-    timeRemainingContainer.style.backgroundColor = "#D4FCEB"
-    timeRemainingContainer.style.padding = "2px"
-    timeRemainingContainer.style.paddingRight = "2px"
-    timeRemainingContainer.style.borderRadius = "4px"
+    timeRemainingContainer.style.top = "75px";
+    timeRemainingContainer.style.right = "50px";
+    timeRemainingContainer.style.backgroundColor = "#D4FCEB";
+    timeRemainingContainer.style.padding = "2px";
+    timeRemainingContainer.style.paddingRight = "2px";
+    timeRemainingContainer.style.borderRadius = "4px";
     // console.log(timeRemainingContainer)
 
-    timer = setInterval( () => {
-      // timeRemainingContainer.innerText = `${minutes}:${seconds}`;
-      // timeRemainingContainer.innerText -= 1
-      quiz.timeRemaining -= 1
+    timer = setInterval(() => {
+      quiz.timeRemaining -= 1;
       minutes = Math.floor(quiz.timeRemaining / 60)
-      .toString()
-      .padStart(2, "0");
+        .toString()
+        .padStart(2, "0");
       seconds = (quiz.timeRemaining % 60).toString().padStart(2, "0");
       timeRemainingContainer.innerText = `${minutes}:${seconds}`;
 
       // console.log(timeRemainingContainer)
       if (quiz.timeRemaining === 0) {
-        clearInterval(timer)
-        showResults()
+        clearInterval(timer);
+        showResults();
       }
-
-    }, 1000)
+    }, 1000);
   }
-  appearTimer()
-  
-
+  appearTimer();
 });
