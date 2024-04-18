@@ -24,6 +24,7 @@ header {
     padding: 20px;
     background: #fff;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative;
 }
 
 #quizView, #endView {
@@ -169,4 +170,5 @@ input[type="radio"] {
     margin: 0 auto;
     margin-top: -35px;
     margin-bottom: 12px;
+    position: absolute;
 }

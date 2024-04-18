@@ -45,22 +45,22 @@ document.addEventListener("DOMContentLoaded", () => {
     ),
     // Add more questions here
   ];
-  const quizDuration = 120; // 120 seconds (2 minutes)
+  const quizDuration = 60; // 120 seconds (2 minutes)
 
   /************  QUIZ INSTANCE  ************/
 
   // Create a new Quiz instance object
-  const quiz = new Quiz(questions, quizDuration, quizDuration);
+  let quiz = new Quiz(questions, quizDuration, quizDuration);
   // Shuffle the quiz questions
   quiz.shuffleQuestions();
 
   /************  SHOW INITIAL CONTENT  ************/
 
   // Convert the time remaining in seconds to minutes and seconds, and pad the numbers with zeros if needed
-  const minutes = Math.floor(quiz.timeRemaining / 60)
+  let minutes = Math.floor(quiz.timeRemaining / 60)
     .toString()
     .padStart(2, "0");
-  const seconds = (quiz.timeRemaining % 60).toString().padStart(2, "0");
+  let seconds = (quiz.timeRemaining % 60).toString().padStart(2, "0");
 
   // Display the time remaining in the time remaining container
   const timeRemainingContainer = document.getElementById("timeRemaining");
@@ -159,10 +159,10 @@ document.addEventListener("DOMContentLoaded", () => {
       liNode.classList.add("aChoice")
       choiceContainer.append(liNode);
     });
+    
   }
  
   
-    
     // 1. Get all the choice elements. You can use the `document.querySelectorAll()` method.
     // 2. Loop through all the choice elements and check which one is selected
     // Hint: Radio input elements have a property `.checked` (e.g., `element.checked`).
@@ -183,9 +183,8 @@ document.addEventListener("DOMContentLoaded", () => {
     quiz.checkAnswer(selectedAnswer)
     quiz.moveToNextQuestion()
     showQuestion()
-   
+    
   }
-  
   
 
   function showResults() {
@@ -204,8 +203,45 @@ document.addEventListener("DOMContentLoaded", () => {
   restartBtnNode.addEventListener("click", () => {
     endView.style.display = "none";
     quizView.style.display = "flex";
-    quiz.currentQuestionIndex = 0
+    quiz = new Quiz(questions, quizDuration, quizDuration);
     quiz.shuffleQuestions()
     showQuestion()
+    appearTimer()
+    
   })
+
+  //DAY 4
+  // 1. TIMER
+  //colocamos nuestro timer en la esquina superior derecha
+  // const containerNode = document.querySelector("#container")
+  function appearTimer() {
+    timeRemainingContainer.style.top = "75px"
+    timeRemainingContainer.style.right = "50px"
+    timeRemainingContainer.style.backgroundColor = "#D4FCEB"
+    timeRemainingContainer.style.padding = "2px"
+    timeRemainingContainer.style.paddingRight = "2px"
+    timeRemainingContainer.style.borderRadius = "4px"
+    // console.log(timeRemainingContainer)
+
+    timer = setInterval( () => {
+      // timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+      // timeRemainingContainer.innerText -= 1
+      quiz.timeRemaining -= 1
+      minutes = Math.floor(quiz.timeRemaining / 60)
+      .toString()
+      .padStart(2, "0");
+      seconds = (quiz.timeRemaining % 60).toString().padStart(2, "0");
+      timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+
+      // console.log(timeRemainingContainer)
+      if (quiz.timeRemaining === 0) {
+        clearInterval(timer)
+        showResults()
+      }
+
+    }, 1000)
+  }
+  appearTimer()
+  
+
 });
