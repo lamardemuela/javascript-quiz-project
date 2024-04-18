@@ -24,28 +24,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Array with the quiz questions
   const questions = [
-    new Question("What is 2 + 2?", ["3", "4", "5", "6"], "4", 1),
+    
     new Question(
-      "What is the capital of France?",
-      ["Miami", "Paris", "Oslo", "Rome"],
-      "Paris",
+      "¿Cuál es la capital actual de Turquía?",
+      ["Estambul", "Constantinopla", "Bizancio", "Ankara"],
+      "Ankara",
       1
     ),
     new Question(
-      "Who created JavaScript?",
-      ["Plato", "Brendan Eich", "Lea Verou", "Bill Gates"],
-      "Brendan Eich",
+      "¿Cuál es la abreviatura química del oro",
+      ["Gd", "Or", "Au", "Ohú"],
+      "Au",
       2
     ),
     new Question(
-      "What is the mass–energy equivalence equation?",
-      ["E = mc^2", "E = m*c^2", "E = m*c^3", "E = m*c"],
-      "E = mc^2",
+      "¿Quién fue el primer astrónomo en proponer el Heliocentrismo?",
+      ["Nicolás Copérnico", "Claudio Ptolomeo", "Johannes Kepler", "Aristarco de Samos"],
+      "Aristarco de Samos",
       3
     ),
+    new Question(
+      "¿Cuál es la cadena de televisión en activo más longeva?",
+      ["BBC (Reino Unido)", "RAI (Italia)", "NBC (EEUU)", "Canal Sur (España)"],
+      "BBC (Reino Unido)",
+      4
+    ),
+    new Question(
+      "¿Cómo se denominan las células de nuestro cuerpo?",
+      ["Eucariotas", "Procariotas", "Pseudocariotas", "Muycarotas"],
+      "Eucariotas",
+      5
+    ),
+    new Question(
+      "¿Qué misiones Apolo llegaron a alunizar con éxito?",
+      ["11, 12, 14, 15, 16 y 17", "10, 11 y 12", "11, 12, 13, 14 y 15", "Nunca se ha alunizado"],
+      "11, 12, 14, 15, 16 y 17",
+      6
+    ),
+    new Question(
+      "¿Cómo de perdido estás en este Bootcamp?",
+      ["Fatal Loli, gracias", "Poco a poco van saliendo cositas", "Quiero llorar", "Soy Jorge"],
+      "Fatal Loli, gracias",
+      7
+    ),
+
+  
+
     // Add more questions here
   ];
-  const quizDuration = 60; // 120 seconds (2 minutes)
+  const quizDuration = 120; // 120 seconds (2 minutes)
 
   /************  QUIZ INSTANCE  ************/
 
